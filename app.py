@@ -32,7 +32,7 @@ def about():
 
 @app.route('/create-article', methods=['POST', 'GET']) # создаем запросы пост гет
 def create_article():
-    if request.form == "POST": #запрос пост
+    if request.method == "POST": #запрос пост
         title = request.form['title']
         intro = request.form['intro']
         text = request.form['text']
@@ -42,7 +42,7 @@ def create_article():
         try:
             db.session.add(article)
             db.session.commit()
-            return redirect('/')
+            return redirect('/posts')
         except:
             return "При дополнении возникла ошибка"  # ошибка а не черный экран
     else:
@@ -50,8 +50,8 @@ def create_article():
 
 
 @app.route('/posts')   # для просмотра всех даных в таблице
-def post():
-    articls = Article.query.order_by(Article.date.desc()).all()
+def posts():
+    articles = Article.query.order_by(Article.date.desc()).all()
     return render_template("posts.html", articls=article)
 
 
@@ -87,7 +87,7 @@ def post_delete(id):
             except:
                 return "При дополнении возникла ошибка"
         else:
-            return render_template("post-update.html")
+            return render_template("post-update.html", article=article)
 
 
 if __name__ == '__main__':
