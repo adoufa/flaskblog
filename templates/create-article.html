@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создание статьи
+{% endblock %}
+
+
+{% block body %}
+    <h1 xmlns="http://www.w3.org/1999/html">Добавление статей</h1>
+         <form action="/create-article"></form>
+         <form method="post">
+             <input type="text" name="title" id="title" class="form-controol" placeholder="Введите название статьи"><br>
+             <textarea name="id" id="intro" class="form-controol" placeholder="Введите анонс"></textarea><br>
+             <textarea name="text" id="text" class="form-controol" placeholder="Введите основной текст"></textarea><br>
+             <input type="submit" class="btn btn-success" value="Отправить">
+         </form>
+{% endblock %}
